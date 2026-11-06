@@ -1,0 +1,101 @@
+/* ==========================================================
+   Contact: email options menu
+   Palette: #171717 / #565656 / #ededed / #da0037
+   ========================================================== */
+
+.email-wrap {
+  position: relative;
+}
+
+.email-menu {
+  position: absolute;
+  top: calc(100% - 6px);
+  left: 50%;
+  z-index: 20;
+  width: min(250px, calc(100vw - 24px));
+  /* centred under EMAIL; --shift (set by contact.js) nudges it back
+     inside the screen when it would run off an edge */
+  transform: translateX(calc(-50% + var(--shift, 0px)));
+  padding: 8px;
+  border: 1px solid #3a3a3a;
+  border-radius: 8px;
+  background: #171717;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
+  text-align: left;
+  font-family: "Oswald", sans-serif;
+  animation: email-menu-in 0.2s ease-out;
+}
+
+.email-menu[hidden] { display: none; }
+
+/* small pointer toward the EMAIL label */
+.email-menu::before {
+  content: "";
+  position: absolute;
+  top: -7px;
+  left: calc(50% - var(--shift, 0px));
+  width: 12px;
+  height: 12px;
+  margin-left: -6px;
+  border-top: 1px solid #3a3a3a;
+  border-left: 1px solid #3a3a3a;
+  background: #171717;
+  transform: rotate(45deg);
+}
+
+@keyframes email-menu-in {
+  from { opacity: 0; translate: 0 -6px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+.email-menu .email-address {
+  margin: 2px 10px 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #2a2a2a;
+  font-size: 0.8rem;
+  letter-spacing: 0.03em;
+  color: #8a8a8a;
+  word-break: break-all;
+}
+
+.email-menu a,
+.email-menu button {
+  display: block;
+  width: 100%;
+  padding: 8px 10px;
+  border: 0;
+  border-radius: 5px;
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  line-height: 1.4;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ededed !important;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+}
+
+/* override the contact section's link hover (red, underline, bigger) */
+.contact-content .email-menu a:hover,
+.contact-content .email-menu a:focus,
+.email-menu button:hover,
+.email-menu button:focus {
+  font-size: 0.95rem;
+  text-decoration: none;
+  background: #da0037;
+  color: #ededed !important;
+  outline: none;
+}
+
+.email-menu .email-copy.is-done {
+  background: #2a2a2a;
+  color: #ededed !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .email-menu { animation: none; }
+}
